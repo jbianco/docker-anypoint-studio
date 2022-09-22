@@ -6,7 +6,8 @@ MAINTAINER Brandon Grantham <brandon.grantham@mulesoft.com>
 LABEL Description="MuleSoft Anypoint Studio"
 
 ## Set version for build
-ARG STUDIO_VERSION=6.2.3-201703101604
+ARG MAIN_VERSION=7.13.0-GA
+ARG STUDIO_VERSION=7.13.0
 #ENV STUDIO_VERSION -201703101604}
 
 ## Update Ubuntu in preparation for installing Anypoint Studio
@@ -25,7 +26,7 @@ RUN 	apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module \
 		&& apt-get install maven -y
 
 ## Retrieve studio for Linux from S3 and uncompress
-RUN 	wget https://mule-studio.s3.amazonaws.com/6.2.3-U3/AnypointStudio-for-linux-64bit-$STUDIO_VERSION.tar.gz -O /tmp/studio.tar.gz -q \ 
+RUN     wget https://mule-studio.s3.amazonaws.com/$MAIN_VERSION/AnypointStudio-$STUDIO_VERSION-linux64.tar.gz -O /tmp/studio.tar.gz -q \
         && echo 'Installing Studio' \
 	&& tar -zxf /tmp/studio.tar.gz -C /opt && \ 
 	rm /tmp/studio.tar.gz
